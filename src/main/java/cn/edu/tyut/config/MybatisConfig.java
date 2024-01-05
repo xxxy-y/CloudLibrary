@@ -1,6 +1,5 @@
 package cn.edu.tyut.config;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInterceptor;
 import org.apache.ibatis.logging.slf4j.Slf4jImpl;
 import org.apache.ibatis.plugin.Interceptor;
