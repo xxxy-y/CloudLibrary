@@ -15,7 +15,9 @@ import com.github.pagehelper.Page;
 public interface BookService {
     /**
      * Page对象是PageHelper分页插件提供的，Page对象继承ArrayList，在其中还封装了页码和总页数等信息
-     * @return Page列表，其中的每一个元素为Book类型的
+     * @param pageNum 有几个分页
+     * @param pageSize 每个分页能放几条数据
+     * @return Page列表，其中的每个元素都为Book类型的
      */
     PageResult selectNewBooks(Integer pageNum, Integer pageSize);
 }

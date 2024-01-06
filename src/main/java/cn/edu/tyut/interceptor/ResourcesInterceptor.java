@@ -27,7 +27,8 @@ public class ResourcesInterceptor implements HandlerInterceptor {
             return true;
         }
         request.setAttribute("msg", "您还没有登录，请先登录！");
-        request.getRequestDispatcher("/admin/login.jsp").forward(request, response);
+        // 路径需要是/WEB-INF/admin/login.jsp的，而不能只有/admin/login.jsp，因为这是forward，forward是相对于当前应用程序的路径来进行转发的
+        request.getRequestDispatcher("/WEB-INF/admin/login.jsp").forward(request, response);
         return false;
     }
 

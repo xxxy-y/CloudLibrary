@@ -23,7 +23,7 @@ public class Book implements Serializable {
     private Double price;
     private String uploadTime;
     private String statusB;
-    private String borrow;
+    private String borrower;
     private String borrowTime;
     private String returnTime;
 }

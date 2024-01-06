@@ -28,7 +28,7 @@
 	</thead>
 
 	<tbody>
-	<c:foreach items="${pageResult.rows}" var="book">
+	<c:forEach items="${pageResult.rows}" var="book">
 		<tr>
 			<td>${book.name}</td>
 			<td>${book.author}</td>
@@ -39,10 +39,23 @@
 				<c:if test="${book.statusB == 1}">借阅中</c:if>
 				<c:if test="${book.statusB == 2}">归还中</c:if>
 			</td>
-			<td>${}</td>
-			<td></td>
+			<td>${book.borrower}</td>
+			<td>${book.borrowTime}</td>
+			<td>${book.returnTime}</td>
+			<td class="text-center">
+				<c:if test="${book.statusB == 0}">
+					<button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#borrowModal">
+						借阅
+					</button>
+				</c:if>
+				<c:if test="${book.statusB == 1 || book.statusB == 2}">
+					<button type="button" class="btn bg-olive btn-xs" disabled="disabled">
+						借阅
+					</button>
+				</c:if>
+			</td>
 		</tr>
-	</c:foreach>
+	</c:forEach>
 	</tbody>
 </table>
 </body>

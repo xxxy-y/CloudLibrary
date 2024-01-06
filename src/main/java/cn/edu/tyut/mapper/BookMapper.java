@@ -29,7 +29,7 @@ public interface BookMapper {
             @Result(property = "price", column = "book_price"),
             @Result(property = "uploadTime", column = "book_uploadtime"),
             @Result(property = "statusB", column = "book_status"),
-            @Result(property = "borrow", column = "book_borrow"),
+            @Result(property = "borrower", column = "book_borrower"),
             @Result(property = "borrowTime", column = "book_borrowtime"),
             @Result(property = "returnTime", column = "book_returntime")
     })

@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @Package_Name cn.edu.tyut.controller
  */
 @Controller
+@RequestMapping("/book")
 public class BookController {
     private BookService bookService;
 

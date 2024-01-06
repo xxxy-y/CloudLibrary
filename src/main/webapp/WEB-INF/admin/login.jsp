@@ -35,7 +35,7 @@
 						</div>
 						<div class="input-prepend">
 							<span class="add-on loginpwd">密码</span>
-							<input type="password" placeholder="请输入密码" class="span2 input-xfat" name="email">
+							<input type="password" placeholder="请输入密码" class="span2 input-xfat" name="password">
 						</div>
 						<div class="logined">
 							<a class="sui-btn btn-block btn-xlarge btn-danger"
