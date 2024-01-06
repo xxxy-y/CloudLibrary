@@ -1,6 +1,6 @@
 package cn.edu.tyut.service;
 
-import cn.edu.tyut.entity.User;
+import cn.edu.tyut.POJO.User;
 
 /**
  * @Author 羊羊

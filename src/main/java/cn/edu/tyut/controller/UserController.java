@@ -1,8 +1,10 @@
 package cn.edu.tyut.controller;
 
-import cn.edu.tyut.entity.User;
+import cn.edu.tyut.POJO.User;
 import cn.edu.tyut.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,13 +30,26 @@ public class UserController {
     public String login(User user, HttpServletRequest httpServletRequest) {
         try {
             User user1 = userService.login(user);
-            if(user1 != null) {
+            if (user1 != null) {
                 httpServletRequest.getSession().setAttribute("USER_SESSION", user1);
                 return "redirect:main";
             } else {
                 httpServletRequest.setAttribute("msg", "用户名或密码错误");
                 return "forward:/admin/login.jsp";
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            httpServletRequest.setAttribute("msg", "系统错误");
+            return "forward:/admin/login.jsp";
+        }
+    }
+
+    @RequestMapping("/logout")
+    public String logout(@NotNull HttpServletRequest httpServletRequest) {
+        try {
+            HttpSession httpSession = httpServletRequest.getSession();
+            httpSession.invalidate();
+            return "forward:/admin/login.jsp";
         } catch (Exception e) {
             e.printStackTrace();
             httpServletRequest.setAttribute("msg", "系统错误");

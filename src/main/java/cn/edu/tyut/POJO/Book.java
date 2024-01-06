@@ -1,4 +1,4 @@
-package cn.edu.tyut.entity;
+package cn.edu.tyut.POJO;
 
 import lombok.Data;
 

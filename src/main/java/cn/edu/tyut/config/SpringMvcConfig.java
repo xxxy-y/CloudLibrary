@@ -1,15 +1,13 @@
 package cn.edu.tyut.config;
 
+import cn.edu.tyut.interceptor.ResourcesInterceptor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.View;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 
 /**
  * @Author 羊羊
@@ -48,5 +46,13 @@ public class SpringMvcConfig implements WebMvcConfigurer {
     @Override
     public void configureViewResolvers(@NotNull ViewResolverRegistry registry) {
         registry.jsp("/WEB-INF/admin/", ".jsp");
+    }
+
+    @Override
+    public void addInterceptors(@NotNull InterceptorRegistry registry) {
+        registry.addInterceptor(new ResourcesInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/css/**", "/js/**", "/img/**")
+                .order(1);
     }
 }

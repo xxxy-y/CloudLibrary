@@ -1,6 +1,6 @@
 package cn.edu.tyut.service.impl;
 
-import cn.edu.tyut.entity.User;
+import cn.edu.tyut.POJO.User;
 import cn.edu.tyut.mapper.UserMapper;
 import cn.edu.tyut.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

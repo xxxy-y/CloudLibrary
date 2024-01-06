@@ -1,8 +1,7 @@
 package cn.edu.tyut.mapper;
 
-import cn.edu.tyut.entity.User;
+import cn.edu.tyut.POJO.User;
 import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
