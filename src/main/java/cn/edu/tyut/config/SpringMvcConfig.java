@@ -2,12 +2,12 @@ package cn.edu.tyut.config;
 
 import cn.edu.tyut.interceptor.ResourcesInterceptor;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScans;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.web.servlet.View;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
+import org.springframework.core.io.Resource;
 import org.springframework.web.servlet.config.annotation.*;
+
+import java.util.List;
 
 /**
  * @Author 羊羊
@@ -27,6 +27,7 @@ import org.springframework.web.servlet.config.annotation.*;
 @ComponentScans({
         @ComponentScan("cn.edu.tyut.controller")
 })
+@PropertySource("classpath:/ignoreUrl.properties")
 @EnableWebMvc
 public class SpringMvcConfig implements WebMvcConfigurer {
     /**
@@ -50,9 +51,20 @@ public class SpringMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(@NotNull InterceptorRegistry registry) {
-        registry.addInterceptor(new ResourcesInterceptor())
+        registry.addInterceptor(resourcesInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns("/css/**", "/js/**", "/img/**")
                 .order(1);
+    }
+
+    /**
+     * 设置用户权限，通过拦截器
+     */
+    @Value("#{'${ignoreUrl}'.split(',')}")
+    private List<String> ignoreUrl;
+
+    @Bean
+    public ResourcesInterceptor resourcesInterceptor() {
+        return new ResourcesInterceptor(ignoreUrl);
     }
 }
