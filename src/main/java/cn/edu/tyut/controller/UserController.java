@@ -4,6 +4,8 @@ import cn.edu.tyut.POJO.User;
 import cn.edu.tyut.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.flogger.Flogger;
+import lombok.extern.log4j.Log4j2;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Package_Name cn.edu.tyut.controller
  */
 @Controller
+@Log4j2
 public class UserController {
     private UserService userService;
 
@@ -44,7 +47,6 @@ public class UserController {
                 return "forward:/WEB-INF/admin/login.jsp";
             }
         } catch (Exception e) {
-            e.printStackTrace();
             httpServletRequest.setAttribute("msg", "系统错误");
             return "forward:/WEB-INF/admin/login.jsp";
         }
@@ -57,7 +59,6 @@ public class UserController {
             httpSession.invalidate();
             return "forward:/admin/login.jsp";
         } catch (Exception e) {
-            e.printStackTrace();
             httpServletRequest.setAttribute("msg", "系统错误");
             return "forward:/admin/login.jsp";
         }

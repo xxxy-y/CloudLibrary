@@ -44,7 +44,8 @@
 			<td>${book.returnTime}</td>
 			<td class="text-center">
 				<c:if test="${book.statusB == 0}">
-					<button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#borrowModal">
+					<button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#borrowModal"
+					        onclick="findBookById(${book.id}, 'borrow')">
 						借阅
 					</button>
 				</c:if>

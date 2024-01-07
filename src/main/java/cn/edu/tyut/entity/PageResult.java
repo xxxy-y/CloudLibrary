@@ -17,10 +17,10 @@ import java.util.List;
 @Data
 public class PageResult implements Serializable {
     private long total;
-    private List rows;
+    private List<?> rows;
 
     @Contract(pure = true)
-    public PageResult(long total, List rows) {
+    public PageResult(long total, List<?> rows) {
         this.total = total;
         this.rows = rows;
     }

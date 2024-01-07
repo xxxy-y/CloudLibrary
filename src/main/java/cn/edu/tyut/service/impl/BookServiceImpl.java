@@ -4,14 +4,20 @@ import cn.edu.tyut.POJO.Book;
 import cn.edu.tyut.entity.PageResult;
 import cn.edu.tyut.mapper.BookMapper;
 import cn.edu.tyut.service.BookService;
+import com.fasterxml.jackson.core.format.DataFormatMatcher;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.zip.DataFormatException;
 
 /**
  * @Author 羊羊
@@ -44,5 +50,21 @@ public class BookServiceImpl implements BookService {
         PageHelper.startPage(pageNum, pageSize);
         Page<Book> page = bookMapper.selectNewBooks();
         return new PageResult(page.getTotal(), page.getResult());
+    }
+
+    @Override
+    public Book findById(Integer id) {
+        return bookMapper.findById(id);
+    }
+
+    @Override
+    public Integer borrowBook(@NotNull Book book) {
+        Book b = this.bookMapper.findById(book.getId());
+        DateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd");
+        book.setBorrowTime(dataFormat.format(new Date()));
+        book.setStatusB("1");
+        book.setPrice(b.getPrice());
+        book.setUploadTime(b.getUploadTime());
+        return bookMapper.editBook(book);
     }
 }
