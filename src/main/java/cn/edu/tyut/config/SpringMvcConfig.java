@@ -51,7 +51,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(@NotNull InterceptorRegistry registry) {
-        registry.addInterceptor(resourcesInterceptor())
+        registry.addInterceptor(new ResourcesInterceptor(ignoreUrl))
                 .addPathPatterns("/**")
                 .excludePathPatterns("/css/**", "/js/**", "/img/**")
                 .order(1);
@@ -62,9 +62,4 @@ public class SpringMvcConfig implements WebMvcConfigurer {
      */
     @Value("#{'${ignoreUrl}'.split(',')}")
     private List<String> ignoreUrl;
-
-    @Bean
-    public ResourcesInterceptor resourcesInterceptor() {
-        return new ResourcesInterceptor(ignoreUrl);
-    }
 }
